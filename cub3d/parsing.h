@@ -2,8 +2,9 @@
 
 # define _PARSING_H
 
-
-#define SCALE 16 // условный размер каждого квадратика в карте
+#include <stdio.h>
+#include <math.h> 
+#define SCALE 20 // условный размер каждого квадратика в карте
 
 
 typedef struct  s_img {
@@ -100,7 +101,7 @@ typedef struct	s_plr //структура для игрока и луча
 
 typedef struct	s_all // структура для всего вместе
 {
-	t_win		*win;
+	t_win		win;
 	t_plr		plr;
 	char		**map;
     char        **only_m;

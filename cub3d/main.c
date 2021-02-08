@@ -6,9 +6,9 @@
 #include <unistd.h>
 #include <mlx.h>
 
-int             print_map(t_all *all);
+int         print_map(t_all *all);
 void        printer(t_all all);
-void           	my_mlx_pixel_put(t_all *all, int x, int y, int color);
+void        my_mlx_pixel_put(t_all *all, int x, int y, int color);
 
 /*typedef struct  s_data {
     void        *img;
@@ -18,6 +18,19 @@ void           	my_mlx_pixel_put(t_all *all, int x, int y, int color);
     int         endian;
 }               t_data;
 */
+
+void check_view(t_all *all, int i, int j)
+{
+	if (all->only_m[i][j] == 'N')
+		all->plr.dir = M_PI/2;
+	else if (all->only_m[i][j] == 'S')
+		all->plr.dir = -M_PI/2;
+	else if (all->only_m[i][j] == 'W')
+		all->plr.dir = M_PI;
+	else if (all->only_m[i][j] == 'E')
+		all->plr.dir = 0;
+}
+
 int		parse_player(t_all *all, int i, int j)
 {
 
@@ -29,6 +42,16 @@ int		parse_player(t_all *all, int i, int j)
 	if ((all->only_m[i][j + 1]) == ' ' || (all->only_m[i + 1][j]) == ' '
 		|| (all->only_m[i - 1][j]) == ' ' || (all->only_m[i][j - 1]) == ' ')
 		return (755);
+	if (ft_strchr("NSEW",all->only_m[i][j]))
+	{
+		all->plr.x = j;
+		all->plr.y = i;
+	//	all->plr.dir = 0;
+		check_view(all,i, j);
+		printf("%f, %f",all->plr.x,all->plr.y );
+	}
+	
+	//all->plr.dir = ;
 	return (1);
 }
 
