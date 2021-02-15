@@ -3,7 +3,10 @@
 # define _PARSING_H
 
 #include <stdio.h>
-#include <math.h> 
+#include <math.h>
+#include <mlx.h>
+#include "gnl/get_next_line.h"
+
 #define SCALE 20 // условный размер каждого квадратика в карте
 
 
@@ -14,6 +17,16 @@ typedef struct  s_img {
     int         line_length;
     int         endian;
 }               t_img;
+
+typedef struct  s_tex {
+    void        *img;
+    char        *addr;
+    int         bits_per_pixel;
+    int         line_length;
+    int         endian;
+    int         tex_w;
+    int         tex_h; 
+}               t_tex;
 
 typedef struct		s_rend
 {
@@ -92,11 +105,13 @@ typedef struct	s_point // структура для точки
 
 typedef struct	s_plr //структура для игрока и луча
 {
-	float		x;
-	float		y;
-	float		dir;
-	float		start;
-	float		end;
+	double		x;
+	double		y;
+	double		dirX;
+	double		dirY;
+	double		end;
+    double		planeX;
+	double		planeY;
 }				  t_plr;
 
 typedef struct	s_all // структура для всего вместе
@@ -115,6 +130,7 @@ typedef struct	s_all // структура для всего вместе
     t_C          C;
     t_S          S;
     t_img      img;
+    t_tex       tex[5];
 
 }				  t_all;
 
