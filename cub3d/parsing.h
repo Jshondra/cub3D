@@ -28,6 +28,29 @@ typedef struct  s_tex {
     int         tex_h; 
 }               t_tex;
 
+typedef struct  s_sprt {
+
+  double x;
+  double y;
+  int dist;
+}               t_sprt;
+
+typedef struct  s_sprite {
+
+    int count;
+    double **buff;
+    double y;
+    int texture;
+    double X;
+    double Y; 
+    double inv;
+    double tranX;
+    double tranY;
+    int ScreenX;
+    int move_s;
+    t_sprt *buf;
+}               t_sprite;
+
 typedef struct		s_rend
 {
     int x;
@@ -80,12 +103,6 @@ typedef struct		s_S
     
 }					t_S;
 
-/*typedef struct		s_only_m
-{
-    char **m;
-    
-}					t_only_m;
-*/
 typedef struct	s_win //структура для окна
 {
 	void		*mlx;
@@ -103,6 +120,38 @@ typedef struct	s_point // структура для точки
 	int			y;
 }				  t_point;
 
+typedef struct	s_ray // структура для точки
+{
+    unsigned int color;
+    int mapX;
+    int mapY;
+    double sideDistX;
+    double sideDistY;
+    int stepX;
+    int stepY;
+    int hit;
+    int side;
+    double deltaDistX;
+    double deltaDistY;
+    double perpWallDist;
+}				  t_ray;
+
+typedef struct s_draw
+{
+    int lineHeight;
+    int drawStart;
+    int drawEnd;
+    int drawStartX;
+    int drawEndX;
+    int drawStartY;
+    int drawEndY;
+    double wallX;
+    int texX;
+    int texY;
+    double step;
+
+}              t_draw;
+
 typedef struct	s_plr //структура для игрока и луча
 {
 	double		x;
@@ -112,6 +161,9 @@ typedef struct	s_plr //структура для игрока и луча
 	double		end;
     double		planeX;
 	double		planeY;
+    double      cameraX;
+    double      rayposX;
+    double      rayposY;
 }				  t_plr;
 
 typedef struct	s_all // структура для всего вместе
@@ -129,9 +181,13 @@ typedef struct	s_all // структура для всего вместе
     t_SO         SO;
     t_C          C;
     t_S          S;
+    int      save;
     t_img      img;
-    t_tex       tex[5];
-
+    t_tex       tex[6];
+    t_sprt      sprt[5];
+    t_sprite    sprite;
+    t_ray       ray;
+    t_draw      draw;
 }				  t_all;
 
 #endif

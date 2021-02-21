@@ -1,0 +1,15 @@
+R 600 400
+
+NO ./greystone.xpm
+SO ./bluestone.xpm
+WE ./redbrick.xpm
+EA ./eagle
+
+F 220,100,0
+
+C 250,100,0
+111111
+100001
+100N01
+100001
+111111
