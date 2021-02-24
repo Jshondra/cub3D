@@ -7,32 +7,32 @@
 #include <mlx.h>
 #include "gnl/get_next_line.h"
 
-#define SCALE 20 // условный размер каждого квадратика в карте
-
+# define MXPM  mlx_xpm_file_to_image
+# define ADR   mlx_get_data_addr
 
 typedef struct  s_img {
     void        *img;
     char        *addr;
-    int         bits_per_pixel;
-    int         line_length;
-    int         endian;
+    int         bp;
+    int         ll;
+    int         end;
 }               t_img;
 
 typedef struct  s_tex {
-    void        *img;
+    void        *i;
     char        *addr;
-    int         bits_per_pixel;
-    int         line_length;
-    int         endian;
-    int         tex_w;
-    int         tex_h; 
+    int         bp;
+    int         ll;
+    int         end;
+    int         w;
+    int         h; 
 }               t_tex;
 
 typedef struct  s_sprt {
 
   double x;
   double y;
-  int dist;
+  //int dist;
 }               t_sprt;
 
 typedef struct  s_sprite {
@@ -49,6 +49,9 @@ typedef struct  s_sprite {
     int ScreenX;
     int move_s;
     t_sprt *buf;
+    int w;
+    int d;
+
 }               t_sprite;
 
 typedef struct		s_rend
@@ -127,18 +130,18 @@ typedef struct	s_ray // структура для точки
     int mapY;
     double sideDistX;
     double sideDistY;
-    int stepX;
-    int stepY;
+    int sX;
+    int sY;
     int hit;
     int side;
     double deltaDistX;
     double deltaDistY;
-    double perpWallDist;
+    double wd;
 }				  t_ray;
 
 typedef struct s_draw
 {
-    int lineHeight;
+    int lhi;
     int drawStart;
     int drawEnd;
     int drawStartX;
@@ -162,14 +165,14 @@ typedef struct	s_plr //структура для игрока и луча
     double		planeX;
 	double		planeY;
     double      cameraX;
-    double      rayposX;
-    double      rayposY;
+    double      rpsX;
+    double      rpsY;
 }				  t_plr;
 
-typedef struct	s_all // структура для всего вместе
+typedef struct	s_a // структура для всего вместе
 {
 	t_win		win;
-	t_plr		plr;
+	t_plr		p;
 	char		**map;
     char        **only_m;
     t_rend      rend;
@@ -181,13 +184,14 @@ typedef struct	s_all // структура для всего вместе
     t_SO         SO;
     t_C          C;
     t_S          S;
-    int      save;
+    int         save;
+    int         flag;
     t_img      img;
-    t_tex       tex[6];
+    t_tex       t[5];
     t_sprt      sprt[5];
-    t_sprite    sprite;
+    t_sprite    s;
     t_ray       ray;
     t_draw      draw;
-}				  t_all;
+}				  t_a;
 
 #endif

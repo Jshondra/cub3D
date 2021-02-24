@@ -1,7 +1,7 @@
-R 1200 1200
+R 600 800
 
 NO ./greystone.xpm
-SO ./mossy.xpm
+SO ./van1.xpm
 WE ./redbrick.xpm
 EA ./bluestone.xpm
 

@@ -356,7 +356,7 @@ void	mlx_int_file_get_rid_comment(char *ptr, int size)
 }
 
 
-void	*mlx_xpm_file_to_image(void *xvar,char *file,int *width,int *height)
+void	*mlxpm(void *xvar,char *file,int *width,int *height)
 {
   int	fd;
   int	size;

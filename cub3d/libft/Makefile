@@ -43,10 +43,10 @@ bonus: all $(OBJSBONUS)
 %.o: %.c $(HEAD)
 	gcc $(CFLAGS) -c $< -o $@
 
-:
+clean:
 	rm -rf *.o
 
-f: 
+fclean: 
 	rm -rf $(NAME)
 
 re: f all
