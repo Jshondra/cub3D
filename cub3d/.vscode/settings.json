@@ -4,6 +4,7 @@
         "get_next_line.h": "c",
         "__locale": "c",
         "parsing.h": "c",
-        "bitset": "c"
+        "bitset": "c",
+        "libft.h": "c"
     }
 }
