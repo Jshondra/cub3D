@@ -107,37 +107,37 @@ int		rgb_to_int_c(t_a *a)
 
 void	we_pos(t_a *a)
 {
-	a->p.dirX = -1.0;
-	a->p.dirY = 0.0;
-	a->p.planeX = 0.0;
-	a->p.planeY = -0.70;
+	a->p.dirx = -1.0;
+	a->p.diry = 0.0;
+	a->p.planex = 0.0;
+	a->p.planey = -0.70;
 	a->only_m[(int)a->p.y][(int)a->p.x] = '0';
 }
 
 void	ea_pos(t_a *a)
 {
-	a->p.dirX = 1.0;
-	a->p.dirY = 0.0;
-	a->p.planeX = 0.0;
-	a->p.planeY = 0.70;
+	a->p.dirx = 1.0;
+	a->p.diry = 0.0;
+	a->p.planex = 0.0;
+	a->p.planey = 0.70;
 	a->only_m[(int)a->p.y][(int)a->p.x] = '0';
 }
 
 void	so_pos(t_a *a)
 {
-	a->p.dirX = 0.0;
-	a->p.dirY = 1.0;
-	a->p.planeX = -0.70;
-	a->p.planeY = 0.0;
+	a->p.dirx = 0.0;
+	a->p.diry = 1.0;
+	a->p.planex = -0.70;
+	a->p.planey = 0.0;
 	a->only_m[(int)a->p.y][(int)a->p.x] = '0';
 }
 
 void	no_pos(t_a *a)
 {
-	a->p.dirX = 0.0;
-	a->p.dirY = -1.0;
-	a->p.planeX = 0.70;
-	a->p.planeY = 0.0;
+	a->p.dirx = 0.0;
+	a->p.diry = -1.0;
+	a->p.planex = 0.70;
+	a->p.planey = 0.0;
 	a->only_m[(int)a->p.y][(int)a->p.x] = '0';
 }
 
@@ -369,8 +369,6 @@ void	make_map(t_list **head, int size, int save)
 	i = -1;
 	tmp = *head;
 	a = NULL;
-	if (save == 1)
-		a->save = 1;
 	if ((map = ft_calloc(size + 1, sizeof(char *))) == NULL)
 		error(10);
 	if ((a = malloc(sizeof(t_a))) == NULL)
@@ -381,6 +379,8 @@ void	make_map(t_list **head, int size, int save)
 		tmp = tmp->next;
 	}
 	a->save = 0;
+	if (save == 1)
+		a->save = 1;
 	pars_map(map, a, 0, 0);
 	go_map(map, a);
 	parse_sprite(a, -1, 0);

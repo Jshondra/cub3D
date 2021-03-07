@@ -9,6 +9,7 @@
 
 # define MXPM  mlx_xpm_file_to_image
 # define ADR   mlx_get_data_addr
+# define BMP "screenshot.bmp"
 
 typedef struct  s_img {
     void        *img;
@@ -43,9 +44,9 @@ typedef struct  s_sprite {
     double X;
     double Y; 
     double inv;
-    double tranX;
-    double tranY;
-    int ScreenX;
+    double tranx;
+    double trany;
+    int screenx;
     int move_s;
     t_sprt *buf;
     int w;
@@ -85,56 +86,47 @@ typedef struct		s_C
     
 }					t_C;
 
-// typedef struct		s_S
-// {
-//     char *sprite;
-// }					t_S;
-
-typedef struct	s_win //структура для окна
+typedef struct	s_win
 {
 	void		*mlx;
 	void		*win;
-	void		*img;
-	void		*addr;
-	int			line_l;
-	int			bpp;
-	int			en;
+
 }				  t_win;
 
-typedef struct	s_point // структура для точки
+typedef struct	s_point
 {
 	int			x;
 	int			y;
 }				  t_point;
 
-typedef struct	s_ray // структура для точки
+typedef struct	s_ray
 {
     unsigned int color;
-    int mapX;
-    int mapY;
-    double sideDistX;
-    double sideDistY;
-    int sX;
-    int sY;
+    int mapx;
+    int mapy;
+    double sidedistx;
+    double sidedisty;
+    int sx;
+    int sy;
     int hit;
     int side;
-    double deltaDistX;
-    double deltaDistY;
+    double deltadistx;
+    double deltadisty;
     double wd;
 }				  t_ray;
 
 typedef struct s_draw
 {
     int lhi;
-    int drawStart;
-    int drawEnd;
-    int drawStartX;
-    int drawEndX;
-    int drawStartY;
-    int drawEndY;
-    double wallX;
-    int texX;
-    int texY;
+    int drawstart;
+    int drawend;
+    int drawstartx;
+    int drawendX;
+    int drawstarty;
+    int drawendy;
+    double wallx;
+    int texx;
+    int texy;
     double step;
 
 }              t_draw;
@@ -143,19 +135,19 @@ typedef struct	s_plr //структура для игрока и луча
 {
 	double		x;
 	double		y;
-	double		dirX;
-	double		dirY;
+	double		dirx;
+	double		diry;
 	double		end;
-    double		planeX;
-	double		planeY;
-    double      cameraX;
-    double      rpsX;
-    double      rpsY;
+    double		planex;
+	double		planey;
+    double      camerax;
+    double      rpsx;
+    double      rpsy;
 }				  t_plr;
 
 typedef struct	s_a // структура для всего вместе
 {
-	t_win		win;
+    t_win		win;
 	t_plr		p;
 	char		**map;
     char        **only_m;
@@ -164,7 +156,6 @@ typedef struct	s_a // структура для всего вместе
     t_point     point;
     t_NO         NO;
     t_C          C;
-    // t_S          S;
     int         save;
     int         flag;
     t_img      img;
@@ -210,8 +201,8 @@ int init(t_a *a, int x);
 int choose_side(t_a *a, int g);
 int choose_side1(t_a *a, int g);
 void draw_walls(t_a *a, int x, int g);
-void spr_init(t_a *a, double spriteOrder[a->s.count], int i);
-void draw_spr(t_a *a, double Zbuff[a->rend.x], int y, int stripe);
+void spr_init(t_a *a, double spriteorder[a->s.count], int i);
+void draw_spr(t_a *a, double zbuff[a->rend.x], int y, int stripe);
 void ft_sprites(t_a *a, double Zbuff[a->rend.x]);
 int newcub(t_a *a);
 void move_forward(t_a *a);
@@ -220,7 +211,7 @@ void rotate_l(t_a *a);
 void rotate_r(t_a *a);
 int key_press(int key, t_a *a);
 void print_map(t_a *a);
-int			mode_atoi(const char *str);
+int	mode_atoi(const char *str);
 
 
 #endif
