@@ -1,0 +1,8 @@
+R 1080 720
+NO ./wolftex/WALL54.xpm
+SO ./wolftex/WALL33.xpm
+EA ./wolftex/WALL64.xpm
+WE ./wolftex/WALL64.xpm
+S ./wolftex/HEADH0.xpm
+C 255,200,160
+F 122,122,122

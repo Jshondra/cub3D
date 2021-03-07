@@ -10,40 +10,58 @@
 #                                                                              #
 # **************************************************************************** #
 
+
 NAME = cub3D
 
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror
 
-#SRCDIR = gnl/
+GNL =	$(addprefix gnl/, \
+		get_next_line.c \
+		get_next_line_utils.c )
 
-SRCS = *.c \
-	./gnl/*.c \
-	./libft/*.c\
+FUNC =	$(addprefix functions/, \
+		cub3d.c\
+		draw_wall_sprites.c\
+		hooks.c\
+		parser.c\
+		player_pos.c\
+		ray_cast.c\
+		utils.c\
+		error.c\
+		mode_atoi.c\
+		player_pars.c\
+		print.c\
+		screenshot.c\
+		utils_for_print.c )
 
-HEAD = cub3D.h
+MLX = -lmlx -framework OpenGL -framework AppKit libmlx.dylib
 
-FLAG_MLX = -framework OpenGL -framework AppKit libmlx.dylib
+FILE_HEAD = functions/cub3D.h
 
+HEAD =	./libft
 
-# OBJSBONUS = $(BONUS:.c=.o)
+HEADERS = $(addprefix -I , $(HEAD))
 
-# OBJS = $(SRCS:.c=.o)
+FLAG_LIBFT = libft.a
 
 all: $(NAME)
 
-$(NAME): 
-		gcc $(CFLAGS) $(SRCS) $(FLAG_MLX) -c -o $(NAME)
-
-# %.o: %.c $(HEAD)
-# 	gcc $(CFLAGS) $(SRCS) $(FLAG_MLX) -c -o $(NAME)
+$(NAME): $(SRCS) $(FILE_HEAD)
+		@$(MAKE) -C libft/
+		@$(MAKE) -C mlx/
+		mv mlx/libmlx.dylib ./
+		mv libft/libft.a ./libft.a
+		gcc $(CFLAGS) $(GNL) $(FUNC) $(HEADERS) $(FLAG_LIBFT) $(MLX) -o $(NAME)
 
 clean:
-	rm -rf *.o
+	rm -rf libft/*.o
+	rm -rf mlx/*.o
+	rm -rf libmlx.dylib
+	rm -rf libft.a
 
-fclean: 
+fclean: clean
 	rm -rf $(NAME)
 
-re: clean fclean all
+re: fclean clean all
 
-.PHONY: all  clean fclean re bonus
-
+.PHONY: all clean fclean re
