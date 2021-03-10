@@ -12,10 +12,21 @@
 
 #include "cub3d.h"
 
-int		skip_space(char *str, int i)
+int		skip_space(char *str, int i, int j)
 {
-	while ((str[i] >= 9 && str[i] <= 13) || (str[i] == 32))
-		i++;
+	int k;
+
+	k = 0;
+	if (j != 0)
+		while ((str[i] >= 9 && str[i] <= 13) || (str[i] == 32))
+			i++;
+	if (j == 0)
+	{
+		while ((str[i] >= 9 && str[i] <= 13) || (str[i] == 32))
+			i++;
+		if (str[i] == ',')
+			error(7);
+	}
 	return (i);
 }
 

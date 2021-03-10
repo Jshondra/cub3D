@@ -173,6 +173,7 @@ typedef struct		s_a
 	int				j;
 	t_img			img;
 	t_tex			t[5];
+	int				flags[9];
 	t_sprt			sprt;
 	t_sprite		s;
 	t_ray			ray;
@@ -182,7 +183,7 @@ typedef struct		s_a
 int					error(int i);
 int					error_2(int i);
 void				parse_sprite(t_a *a, int i, int j);
-int					skip_space(char *str, int i);
+int					skip_space(char *str, int i, int j);
 int					rgb_to_int_f(t_a *a);
 int					rgb_to_int_c(t_a *a);
 void				we_pos(t_a *a);
@@ -192,13 +193,13 @@ void				no_pos(t_a *a);
 int					check_view(t_a *a, int i, int j);
 int					parse_player(t_a *a, int i, int j);
 void				valid_map(t_a *a, int i, int j);
-void				go_map(char **map, t_a *a);
-int					parse_r(char *map, t_a *a, int flag);
+void				go_map(char **map, t_a *a, int k);
+int					parse_r(char *map, t_a *a, int flag, int j);
 int					parse_c(char *map, t_a *a, int j);
 int					parse_f(char *map, t_a *a, int j);
 int					helper(char **map, t_a *a, int flag, int i);
 int					helper1(char **map, t_a *a, int flag, int i);
-void				pars_map(char **map, t_a *a, int i, int flag);
+int					pars_map(char **map, t_a *a, int i, int flag);
 int					next(int i, char *s1);
 int					open_file(char *name, int *fd, int i);
 void				parser(int *fd, int save);
@@ -226,5 +227,10 @@ int					key_press(int key, t_a *a);
 void				print_map(t_a *a);
 int					mode_atoi(const char *str);
 int					create_bmp(t_a *a);
+void				init_some(int save, t_a *a);
+void				for_flag(t_a *a, int flag);
+void 				check_help(t_a *a, int i, int j, char **map);
+void 				node_check(char *map, int j);
+void				init_some(int save, t_a *a);
 
 #endif

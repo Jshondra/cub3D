@@ -60,8 +60,8 @@ int		check_view(t_a *a, int i, int j)
 		so_pos(a);
 	else if (a->only_m[i][j] == 'N')
 		no_pos(a);
-	a->flag++;
-	if (a->flag > 1 || a->flag == 0)
+	a->flag += 1;
+	if (a->flag != 1)
 		error(1);
 	return (1);
 }

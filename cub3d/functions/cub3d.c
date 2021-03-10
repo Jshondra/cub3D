@@ -31,12 +31,10 @@ void	make_map(t_list **head, int size, int save)
 		map[++i] = tmp->content;
 		tmp = tmp->next;
 	}
-	a->save = 0;
-	a->j = 0;
-	if (save == 1)
-		a->save = 1;
-	pars_map(map, a, 0, 0);
-	go_map(map, a);
+	init_some(save, a);
+	i = pars_map(map, a, 0, 0);
+	write(1,"here\n", 5);
+	go_map(map, a, i);
 	parse_sprite(a, -1, 0);
 	print_map(a);
 }
@@ -60,11 +58,23 @@ void	parser(int *fd, int save)
 {
 	char	*line;
 	t_list	*head;
+	int		j;
+	int		i;
 
+	j = 0;
+	i = 0;
 	head = NULL;
 	line = NULL;
-	while (get_next_line(*fd, &line))
+	while ((j = get_next_line(*fd, &line)) > 0)
+	{	
 		ft_lstadd_back(&head, ft_lstnew(line));
+		i++;
+	}
+	if (i == 0 && j == 0)
+		{
+			close(*fd);
+			error_2(5);
+		}
 	ft_lstadd_back(&head, ft_lstnew(line));
 	make_map(&head, ft_lstsize(head), save);
 	free(line);

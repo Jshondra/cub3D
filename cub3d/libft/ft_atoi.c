@@ -9,6 +9,7 @@
 /*   Updated: 2020/11/04 18:43:49 by jshondra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "../functions/cub3d.h"
 
 int		ft_atoi(const char *str)
 {
@@ -30,7 +31,7 @@ int		ft_atoi(const char *str)
 		n = n * 10 + str[i] - 48;
 		i++;
 		if (n > 255)
-			return (-1);
+			error(5);
 	}
 	return (n);
 }

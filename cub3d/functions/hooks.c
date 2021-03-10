@@ -60,6 +60,26 @@ void			rotate_r(t_a *a)
 	a->p.planey = oldplanex * sin(rotspeed) + a->p.planey * cos(rotspeed);
 }
 
+void    move_left(t_a *a)
+{
+	 if (a->only_m[(int)(a->p.x -
+    a->p.planex * 0.5)][(int)a->p.y] != '1')
+        a->p.x += a->p.planex * 0.1;
+	
+    if (a->only_m[(int)a->p.x]
+    [(int)(a->p.y + a->p.planey * 0.5)] != '1')
+        a->p.y += a->p.planey * 0.1;
+}
+void    move_right(t_a *a)
+{
+     if (a->only_m[(int)(a->p.x +
+    a->p.planex * 0.5)][(int)a->p.y] != '1')
+        a->p.x -= a->p.planex * 0.1;
+    if (a->only_m[(int)a->p.x]
+    [(int)(a->p.y - a->p.planey * 0.5)] != '1')
+        a->p.y -= a->p.planey * 0.1;
+}
+
 int				key_press(int key, t_a *a)
 {
 	if (key == 13)
@@ -72,5 +92,10 @@ int				key_press(int key, t_a *a)
 		rotate_r(a);
 	if (key == 53)
 		exit(0);
+	if (key == 124)
+		move_left(a);
+	if (key == 123)
+		move_right(a);
+
 	return (0);
 }

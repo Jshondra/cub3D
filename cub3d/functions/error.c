@@ -23,7 +23,7 @@ int		error(int i)
 	else if (i == 4)
 		write(1, "Error\nWrong info format about resolution!\n", 6 + 37);
 	else if (i == 5)
-		write(1, "Error\nWrong info format about ceil!\n", 6 + 31);
+		write(1, "Error\nWrong info about ceil or floor!\n", 39);
 	else if (i == 6)
 		write(1, "Error\nWrong info format about floor!\n", 6 + 32);
 	else if (i == 7)
@@ -44,14 +44,12 @@ int		error_2(int i)
 {
 	if (i == 1)
 		write(1, "Error\nWrong arguments!\n", 24);
-	// else if (i == 2)
-	// 	write(1, "Error\nNot valid map!\n", 6 + 16);
 	else if (i == 3)
 		write(1, "Error\nWrong symbol on the map!\n", 6 + 26);
 	else if (i == 4)
 		write(1, "Error\nWrong info format about resolution!\n", 6 + 37);
 	else if (i == 5)
-		write(1, "Error\nWrong info format about ceil!\n", 6 + 31);
+		write(1, "Error\nempty file!\n", 19);
 	else if (i == 6)
 		write(1, "Error\nWrong info format about floor!\n", 6 + 32);
 	else if (i == 7)

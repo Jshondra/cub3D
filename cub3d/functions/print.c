@@ -56,6 +56,7 @@ int				newcub(t_a *a)
 	ft_sprites(a, z);
 	a->save && !(create_bmp(a)) ? key_press(53, a->win.mlx) : 0;
 	mlx_put_image_to_window(a->win.mlx, a->win.win, a->img.img, 0, 0);
+	mlx_destroy_image(a->win.mlx, a->img.img);
 	return (1);
 }
 
